@@ -1,0 +1,11 @@
+version: "3"
+services:
+  mqtt:
+    image: iqtlabs/edgetech-mqtt:${SERVICES_VERSION:-latest}
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    restart: unless-stopped
