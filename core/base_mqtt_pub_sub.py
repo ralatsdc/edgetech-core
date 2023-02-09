@@ -318,7 +318,7 @@ class BaseMQTTPubSub:
         }
         return json.dumps(out_json)
 
-    def decode_x_payload(self, payload):
+    def decode_payload(self, payload):
         """
         Decode the payload carried by a message.
 
@@ -330,7 +330,7 @@ class BaseMQTTPubSub:
         Returns
         -------
         data : dict
-            The data component of the message
+            The data component of the payload
         """
         data = json.loads(str(payload.decode("utf-8")))["data"]
         return data

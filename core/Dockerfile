@@ -4,6 +4,7 @@ RUN pip install paho-mqtt==1.6.1
 RUN pip install pytest==7.2.0
 RUN apt update
 RUN apt install screen -y
+RUN apt install build-essential -y
 
 WORKDIR /root
 ADD ./base_mqtt_pub_sub.py .
