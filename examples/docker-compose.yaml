@@ -6,7 +6,7 @@ services:
       - "1883:1883"
       - "9001:9001"
     build:
-      context: ./mqtt
+      context: ../mqtt
       dockerfile: ./Dockerfile
     restart: unless-stopped
   filesaver:
