@@ -67,7 +67,7 @@ class BaseMQTTPubSub:
         self.heartbeat_frequency = heartbeat_frequency
 
         coloredlogs.install(
-            level=os.environ.get("LOG_LEVEL", "INFO"),
+            level=colored_logs_level,
             fmt="%(asctime)s.%(msecs)03d \033[0;90m%(levelname)-8s "
             ""
             "\033[0;36m%(filename)-18s%(lineno)3d\033[00m "
