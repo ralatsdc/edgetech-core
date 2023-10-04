@@ -3,9 +3,7 @@ incorporates a dynamic message/event-based infrastructure that is enabled via MQ
 This is very much a working document and is under active development.
 """
 import json
-import os
-from typing import Callable, Any, Dict, List
-
+from typing import Callable, Any, Dict, List, Union
 import paho.mqtt.client as mqtt
 import coloredlogs
 
@@ -22,6 +20,7 @@ class BaseMQTTPubSub:
     REGISTRATION_TOPIC = "/registration"
     HEARTBEAT_TOPIC = "/heartbeat"
     HEARTBEAT_FREQUENCY = 10  # seconds
+    COLORED_LOGS_LEVEL = "INFO"
     COLORED_LOGS_STYLES = {
         "critical": {"bold": True, "color": "red"},
         "debug": {"color": "green"},
@@ -42,6 +41,7 @@ class BaseMQTTPubSub:
         registration_topic: str = REGISTRATION_TOPIC,
         heartbeat_topic: str = HEARTBEAT_TOPIC,
         heartbeat_frequency: int = HEARTBEAT_FREQUENCY,
+        colored_logs_level: str = COLORED_LOGS_LEVEL,
         colored_logs_styles: Dict[str, Any] = COLORED_LOGS_STYLES,
     ) -> None:
         """BaseMQTTPubSub constructor takes constants for the config filepath, heartbeat channel,
@@ -280,7 +280,7 @@ class BaseMQTTPubSub:
 
     def generate_payload_json(
         self: Any,
-        push_timestamp: float,
+        push_timestamp: Union[int, float],
         device_type: str,
         id_: str,
         deployment_id: str,
